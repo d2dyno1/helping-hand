@@ -14,7 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\bootstrap-icons\" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.bundle.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css" />
     </ItemGroup>
 
 </Project>

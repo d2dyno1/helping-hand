@@ -6,6 +6,9 @@ wwwroot="src/dotnetBB/wwwroot"
 rm -f "$wwwroot/bootstrap/*"
 rm -f "$wwwroot/bootstrap-icons/*"
 
+mkdir "$wwwroot/bootstrap"
+mkdir "$wwwroot/bootstrap-icons"
+
 npm i
 cp node_modules/bootstrap/dist/css/bootstrap.min.css "$wwwroot/bootstrap"
 cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js "$wwwroot/bootstrap"
