@@ -4,3 +4,6 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
+node_modules
+src/dotnetBB/wwwroot/bootstrap/*
+src/dotnetBB/wwwroot/bootstrap-icons/*
