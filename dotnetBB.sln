@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetBB", "dotnetBB\dotnetBB.csproj", "{9386705E-D2E8-49DA-AA94-78D115900705}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetBB", "src\dotnetBB\dotnetBB.csproj", "{9386705E-D2E8-49DA-AA94-78D115900705}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
