@@ -1,10 +1,15 @@
 using dotnetBB.Components;
+using dotnetBB.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
-// Add services to the container.
-builder.Services.AddRazorComponents()
+services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlite($"Data Source=dotnetBB.db"));
 
 var app = builder.Build();
 
