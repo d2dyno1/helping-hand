@@ -16,6 +16,13 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.bundle.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\bootstrap\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap-icons\bootstrap-icons.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap-icons\fonts\bootstrap-icons.woff" />
+      <_ContentIncludedByDefault Remove="wwwroot\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\lib\" />
     </ItemGroup>
 
 </Project>
