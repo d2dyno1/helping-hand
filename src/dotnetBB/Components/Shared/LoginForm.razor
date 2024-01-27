@@ -1,5 +1,5 @@
 @using System.ComponentModel.DataAnnotations
-<EditForm Model="@Model" FormName="@FormName" OnValidSubmit="@Submit" class="d-flex flex-column login-form" method="post">
+<EditForm Model="@Model" FormName="@FormName" OnValidSubmit="@Submit" class="d-flex flex-column login-form flex-grow-1" method="post">
     <DataAnnotationsValidator/>
     @if (Error != null)
     {

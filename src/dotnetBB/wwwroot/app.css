@@ -2,13 +2,14 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body, .page, main {
+    height: 100vh;
+}
+
 a, .btn-link {
     color: #006bb7;
 }
 
-.content {
-    padding-top: 1.1rem;
-}
 
 h1:focus {
     outline: none;
