@@ -31,22 +31,37 @@
             </ul>
             
             <div class="d-flex btn-group">
-                <a href="/login" id="btn-login" class="btn btn-dark js-no-href" data-bs-toggle="modal" data-bs-target="#exampleModal">Log in</a>
-                <a href="/register" id="btn-register" class="btn btn-dark js-no-href">Register</a>
+                <a href="/login" id="btn-login" class="btn btn-dark js-no-href" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</a>
+                <a href="/register" id="btn-register" class="btn btn-dark js-no-href" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
             </div>
         </div>
     </div>
 </nav>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Log in</h1>
+                <h1 class="modal-title fs-5" id="loginModalLabel">Log in</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body m-0">
                 <LoginForm FormName="loginForm-nav"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registerModalLabel">Register</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body m-0">
+                <RegisterForm FormName="loginForm-nav"/>
             </div>
         </div>
     </div>

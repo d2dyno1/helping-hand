@@ -12,21 +12,20 @@
         <div class="col-sm-9">
             <InputText id="email" class="form-control" @bind-Value="Model!.Email"/>
             <ValidationMessage For="() => Model.Email"/>
-            @* <input type="email" class="form-control" id="email" name="email"> *@
         </div>
     </div>
     <div class="row mb-3">
         <label for="password" class="col-sm-3 col-form-label">Password</label>
         <div class="col-sm-9">
-            <input type="password" class="form-control" id="password" name="password">
+            <InputText type="password" id="password" class="form-control" @bind-Value="Model!.Password"/>
+            <ValidationMessage For="() => Model.Password"/>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-9 offset-sm-3">
-            <div class="for-check">
-                <input class="form-check-input" type="checkbox" id="remember">
-                <label class="form-check-label" for="remember">Remember me</label>
-            </div>
+    <div class="row mb-3">
+        <label for="confirm-password" class="col-sm-3 col-form-label">Confirm password</label>
+        <div class="col-sm-9">
+            <InputText type="password" id="confirm-password" class="form-control" @bind-Value="Model!.ConfirmPassword"/>
+            <ValidationMessage For="() => Model.ConfirmPassword"/>
         </div>
     </div>
     <hr/>
@@ -35,21 +34,29 @@
     {
         <button id="logging-in" class="btn btn-primary align-self-center" disabled>
             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Logging in...</span>
+            <span role="status">Registering...</span>
         </button>
     }
     else
     {
-        <button type="submit" class="btn btn-primary align-self-center">Log in</button>
+        <button type="submit" class="btn btn-primary align-self-center">Register</button>
     }
 </EditForm>
 
 @code {
     public class LoginModel
     {
+        [Required]
         [EmailAddress]
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public string Email { get; set; }
+        
+        [Required]
+        [MinLength(12)]
+        [MaxLength(128)]
+        public string Password { get; set; }
+        
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
     }
 
     [SupplyParameterFromForm] 
@@ -66,6 +73,6 @@
         IsLoggingIn = true;
         await Task.Delay(1000);
         IsLoggingIn = false;
-        Error = "Incorrect e-mail and/or password.";
+        Error = "Error";
     }
 }
