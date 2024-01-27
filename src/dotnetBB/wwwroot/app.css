@@ -6,6 +6,10 @@ body, .page, main {
     height: 100vh;
 }
 
+main > h1 {
+    margin-bottom: 1.5rem;
+}
+
 a, .btn-link {
     color: #006bb7;
 }
