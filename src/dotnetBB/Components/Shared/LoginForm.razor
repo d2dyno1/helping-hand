@@ -1,14 +1,24 @@
-<form id="login-form" class="d-flex flex-column">
+@using System.ComponentModel.DataAnnotations
+<EditForm Model="@Model" FormName="@FormName" OnValidSubmit="@Submit" class="d-flex flex-column login-form" method="post">
+    <DataAnnotationsValidator/>
+    @if (Error != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <i class="bi-x-circle-fill me-2"></i> @Error
+        </div>
+    }
     <div class="row mb-3">
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="email">
+            <InputText id="email" class="form-control" @bind-Value="Model!.Email"/>
+            <ValidationMessage For="() => Model.Email"/>
+            @* <input type="email" class="form-control" id="email" name="email"> *@
         </div>
     </div>
     <div class="row mb-3">
         <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
     </div>
     <div class="row">
@@ -20,5 +30,42 @@
         </div>
     </div>
     <hr/>
-    <button type="submit" class="btn btn-primary align-self-center px-5">Log in</button>
-</form>
+    
+    @if (IsLoggingIn)
+    {
+        <button id="logging-in" class="btn btn-primary align-self-center" disabled>
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <span role="status">Logging in...</span>
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-primary align-self-center">Log in</button>
+    }
+</EditForm>
+
+@code {
+    public class LoginModel
+    {
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+
+    [SupplyParameterFromForm] 
+    public LoginModel? Model { get; set; } = new();
+
+    [Parameter]
+    public string FormName { get; set; } = "loginForm";
+
+    private bool IsLoggingIn { get; set; }
+    private string? Error { get; set; }
+    
+    public async Task Submit()
+    {
+        IsLoggingIn = true;
+        await Task.Delay(1000);
+        IsLoggingIn = false;
+        Error = "Incorrect e-mail and/or password.";
+    }
+}

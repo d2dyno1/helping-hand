@@ -1,11 +1,4 @@
-﻿@page "/"
+﻿@using dotnetBB.Components.Shared
+@page "/"
 
-<PageTitle>Home</PageTitle>
-
-<script>
-    new bootstrap.Popover(document.querySelector("#login-form-popover-btn"), {
-        html: true,
-        sanitize: false,
-        content: document.querySelector("#login-form").innerHTML
-    });
-</script>
+<LoginForm/>
