@@ -1,18 +1,16 @@
 @inherits LayoutComponentBase
 @layout Layout.MainLayout
 
-@inject NavigationManager NavigationManager
 
 <div class="d-flex gap-5">
     <div id="sidebar" class="pe-5">
         <ul class="d-flex flex-column p-0">
             <label class="section-name">Settings</label>
             <Link Href="/account">Account details</Link>
-            <Link Href="/account/page2">Page 2</Link>
-            <Link Href="/account#">Page 3</Link>
+            <Link Href="/account/privacy">Privacy</Link>
+            <Link Href="/account/preferences">Preferences</Link>
         </ul>
     </div>
-    
     
     @Body
 </div>
