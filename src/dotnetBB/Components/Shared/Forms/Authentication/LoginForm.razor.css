@@ -1,3 +1,7 @@
 form button {
     width: 150px;
 }
+
+form .row > label {
+    text-align: right;
+}
