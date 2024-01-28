@@ -1,7 +1,7 @@
-@using dotnetBB.Components.Shared
-@using dotnetBB.Data
-@using Microsoft.EntityFrameworkCore
+@using dotnetBB.Components.Shared.Forms.Authentication
+@using Microsoft.AspNetCore.Authorization
 
+@attribute [Authorize(Policy = "Anonymous")]
 @page "/register"
 
 <h1>Register</h1>

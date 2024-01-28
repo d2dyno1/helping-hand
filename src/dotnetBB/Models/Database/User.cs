@@ -1,4 +1,4 @@
-namespace dotnetBB.Models;
+namespace dotnetBB.Models.Database;
 
 public class User
 {

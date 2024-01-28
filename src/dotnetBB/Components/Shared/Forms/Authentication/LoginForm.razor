@@ -1,0 +1,130 @@
+@using dotnetBB.Models.Request
+
+@inject IJSRuntime JSRuntime
+@inject UserService UserService
+
+<EditForm
+    Model="Model"
+    FormName="@FormName"
+    OnValidSubmit="@Submit"
+    name="@FormName"
+    data-form-name="@FormName"
+    class="d-flex flex-column login-form flex-grow-1"
+    method="post"
+    action="/login">
+    
+    <DataAnnotationsValidator/>
+    @if (Error != null)
+    {
+        <div class="alert alert-danger" role="alert" id="error-container">
+            <i class="bi-x-circle-fill me-2"></i> <label id="error-text">@Error</label>
+        </div>
+    }
+    <div class="row mb-3">
+        <label for="email-or-username" class="col-sm-3 col-form-label">Email or username</label>
+        <div class="col-sm-9">
+            <InputText id="email-or-username" class="form-control" @bind-Value="Model.EmailOrUsername"/>
+            <ValidationMessage For="() => Model.EmailOrUsername"/>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="password" class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+            <InputText type="password" id="password" class="form-control" @bind-Value="Model.Password"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 offset-sm-3">
+            <div class="for-check">
+                <input class="form-check-input" type="checkbox" id="remember">
+                <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+        </div>
+    </div>
+    <hr/>
+
+    @if (IsLoggingIn)
+    {
+        <button class="btn btn-primary align-self-center" disabled>
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <span role="status">Logging in...</span>
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-primary align-self-center">Log in</button>
+    }
+</EditForm>
+
+<script>
+    function submitLoginForm(formName) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: "/auth/login",
+                type: "POST",
+                data: $(`form[data-form-name=${formName}]`).serialize(),
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: () => {
+                    document.location.href = "/"; 
+                },
+                error: xhr => {
+                    reject(xhr.responseText);  
+                }
+            });
+        });
+    }
+</script>
+
+@code {
+    [SupplyParameterFromForm]
+    private LoginModel Model { get; set; } = new();
+
+    [Parameter] 
+    public string FormName { get; set; } = nameof(LoginForm);
+    
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    private bool IsLoggingIn { get; set; }
+    private string? Error { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+    }
+
+    private async Task Submit()
+    {
+        IsLoggingIn = true;
+        if (HttpContext is not null)
+        {
+            try
+            {
+                await UserService.LogInAsync(Model.EmailOrUsername, Model.Password, HttpContext);
+                HttpContext.Response.Redirect("/");
+            }
+            catch (ArgumentException e)
+            {
+                Error = e.Message;
+                IsLoggingIn = false;
+            }
+            catch (Exception e)
+            {
+                Error = "An unexpected error has occurred.";
+                IsLoggingIn = false;
+            }
+
+            return;
+        }
+
+        try
+        {
+            await JSRuntime.InvokeAsync<string>("submitLoginForm", FormName);
+        }
+        catch (JSException e)
+        {
+            Error = e.Message;
+            IsLoggingIn = false;
+        }
+    }
+}

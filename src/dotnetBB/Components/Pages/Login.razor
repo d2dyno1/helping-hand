@@ -1,5 +1,7 @@
-@using dotnetBB.Components.Shared
+@using dotnetBB.Components.Shared.Forms.Authentication
+@using Microsoft.AspNetCore.Authorization
 
+@attribute [Authorize(Policy = "Anonymous")]
 @page "/login"
 
 <h1>Log in</h1>

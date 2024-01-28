@@ -1,4 +1,5 @@
 using dotnetBB.Models;
+using dotnetBB.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotnetBB.Data;
