@@ -1,5 +1,8 @@
 <div class="d-flex flex-column p-0">
-    <label class="section-header">@Header</label>
+    @if (Header != null)
+    {
+        <label class="section-header">@Header</label>
+    }
     @ChildContent
 </div>
 
