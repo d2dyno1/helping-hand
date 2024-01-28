@@ -6,17 +6,7 @@
 
 <form @formname="LogoutForm" @onsubmit="@Submit" method="post">
     <AntiforgeryToken/>
-    @if (IsLoggingOut)
-    {
-        <button id="logging-in" class="btn btn-dark align-self-center" disabled>
-            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Logging out...</span>
-        </button>
-    }
-    else
-    {
-        <button type="submit" class="btn btn-dark align-self-center">Log out</button>
-    }
+    <button type="submit" class="btn btn-link p-0 text-decoration-none link-danger">Log out</button>
 </form>
 
 <script>
@@ -36,8 +26,6 @@
     [CascadingParameter]
     private HttpContext? HttpContext { get; set; }
 
-    private bool IsLoggingOut { get; set; }
-
     private async Task Submit()
     {
         if (HttpContext is not null)
@@ -46,8 +34,7 @@
             HttpContext.Response.Redirect(HttpContext.Request.Path);
             return;
         }
-
-        IsLoggingOut = true;
+        
         await JSRuntime.InvokeVoidAsync("submitLogoutForm");
     }
 }
