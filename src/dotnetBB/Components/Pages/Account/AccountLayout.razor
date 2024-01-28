@@ -1,16 +1,16 @@
+@using dotnetBB.Components.Shared.Navigation.Sidebar
+
 @inherits LayoutComponentBase
 @layout Layout.MainLayout
 
-
 <div class="d-flex gap-5">
-    <div id="sidebar" class="pe-5">
-        <ul class="d-flex flex-column p-0">
-            <label class="section-name">Settings</label>
-            <Link Href="/account">Account details</Link>
-            <Link Href="/account/privacy">Privacy</Link>
-            <Link Href="/account/preferences">Preferences</Link>
-        </ul>
-    </div>
-    
+    <NavigationSidebar>
+        <NavigationSidebarSection Header="Settings">
+            <NavigationSidebarSectionItem Href="/account">Account details</NavigationSidebarSectionItem>
+            <NavigationSidebarSectionItem Href="/account/privacy">Privacy</NavigationSidebarSectionItem>
+            <NavigationSidebarSectionItem Href="/account/preferences">Preferences</NavigationSidebarSectionItem>
+        </NavigationSidebarSection>
+    </NavigationSidebar>
+
     @Body
 </div>

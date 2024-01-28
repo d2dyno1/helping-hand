@@ -1,36 +1,9 @@
 .content {
     display: flex;
     flex-direction: row;
-    background-color: blue;
-}
-
-#sidebar {
-    width: 200px;
 }
 
 #sidebar strong {
     margin-bottom: 5px;
 }
 
-::deep #sidebar a {
-    color: var(--bs-body-color);
-    text-decoration: none !important;
-    padding: 2px 8px;
-    margin-left: -8px;
-    border-radius: var(--bs-border-radius-lg);
-    margin-bottom: 2px;
-}
-
-::deep #sidebar a:hover {
-    background-color: rgba(13, 110, 253, 0.1);
-}
-
-::deep #sidebar a.current {
-    background-color: rgba(13, 110, 253, 0.25);
-    font-weight: bold;
-}
-
-.section-name {
-    font-weight: bold;
-    font-size: 1.35rem;
-}

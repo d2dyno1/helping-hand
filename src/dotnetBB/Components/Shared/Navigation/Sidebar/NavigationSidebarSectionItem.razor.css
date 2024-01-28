@@ -1,0 +1,18 @@
+a {
+    color: var(--bs-body-color);
+    text-decoration: none !important;
+    padding: 2px 8px;
+    margin-left: -8px;
+    border-radius: var(--bs-border-radius-lg);
+    margin-bottom: 2px;
+    width: max-content;
+}
+
+a:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+a.current {
+    background-color: rgba(13, 110, 253, 0.25);
+    font-weight: bold;
+}

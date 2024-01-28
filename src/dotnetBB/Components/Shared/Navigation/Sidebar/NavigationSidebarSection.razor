@@ -1,0 +1,12 @@
+<div class="d-flex flex-column p-0">
+    <label class="section-header">@Header</label>
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public string? Header { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
