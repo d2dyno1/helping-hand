@@ -1,0 +1,16 @@
+@inject NavigationManager NavigationManager
+
+<NavigationSidebarSectionItem>
+    <a href="@Href"
+       class="text-decoration-none @($"/{NavigationManager.ToBaseRelativePath(NavigationManager.Uri)}" == Href ? "link-primary fw-bold" : "link-body-emphasis")">
+        @ChildContent
+    </a>
+</NavigationSidebarSectionItem>
+
+@code {
+    [Parameter]
+    public string Href { get; set; }
+    
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

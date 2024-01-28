@@ -1,13 +1,8 @@
-@inject NavigationManager NavigationManager
-
-<a href="@Href" class=@($"/{NavigationManager.ToBaseRelativePath(NavigationManager.Uri)}" == Href ? "current" : "")>
+<div>
     @ChildContent
-</a>
+</div>
 
 @code {
     [Parameter]
-    public string Href { get; set; }
-    
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 }
