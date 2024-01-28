@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Sodium;
+using ClaimTypes = dotnetBB.Authorization.ClaimTypes;
 
 namespace dotnetBB.Services;
 
@@ -51,7 +52,8 @@ public class UserService
         var claims = new List<Claim>
         {
             new(ClaimTypes.Email, user.Email),
-            new(ClaimTypes.Name, user.Username)
+            new(ClaimTypes.UserId, user.Id.ToString()),
+            new(ClaimTypes.Username, user.Username)
         };
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
