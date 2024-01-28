@@ -1,3 +1,4 @@
+@using dotnetBB.Components.Shared.Forms.Authentication
 @using dotnetBB.Components.Shared.Navigation.Sidebar
 
 @inherits LayoutComponentBase
@@ -9,6 +10,11 @@
             <NavigationSidebarSectionLinkItem Href="/account">Account details</NavigationSidebarSectionLinkItem>
             <NavigationSidebarSectionLinkItem Href="/account/privacy">Privacy</NavigationSidebarSectionLinkItem>
             <NavigationSidebarSectionLinkItem Href="/account/preferences">Preferences</NavigationSidebarSectionLinkItem>
+        </NavigationSidebarSection>
+        <NavigationSidebarSection>
+            <NavigationSidebarSectionItem>
+                <LogoutForm/>
+            </NavigationSidebarSectionItem>
         </NavigationSidebarSection>
     </NavigationSidebar>
 
