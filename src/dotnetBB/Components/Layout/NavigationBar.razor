@@ -17,7 +17,7 @@
             <CascadingAuthenticationState>
                 <AuthorizeView>
                     <Authorized>
-                        <label class="me-3">@context.User.GetClaim(ClaimTypes.Username)</label>
+                        <a href="/account" class="link-body-emphasis me-3 text-decoration-none">@context.User.GetClaim(ClaimTypes.Username)</a>
                     </Authorized>
                     <NotAuthorized>
                         <div class="d-flex btn-group">
