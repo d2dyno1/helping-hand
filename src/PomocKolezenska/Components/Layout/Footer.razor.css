@@ -1,0 +1,3 @@
+footer > div {
+    max-width: var(--max-page-width);
+}

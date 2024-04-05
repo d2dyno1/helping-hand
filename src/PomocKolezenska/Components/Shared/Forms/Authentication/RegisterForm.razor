@@ -1,0 +1,78 @@
+@using PomocKolezenska.Models.Request
+
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject UserService UserService
+
+<EditForm
+    Model="@Model"
+    FormName="RegisterForm"
+    OnValidSubmit="@Submit"
+    Enhance="true"
+    id="register-form"
+    class="d-flex flex-column login-form flex-grow-1">
+    
+    <DataAnnotationsValidator/>
+    @if (Error != null)
+    {
+        <div class="alert alert-danger" role="alert" id="error-container">
+            <i class="bi-x-circle-fill me-2"></i> <label id="error-text">@Error</label>
+        </div>
+    }
+    
+    <FieldSet>
+        <Field Label="Username">
+            <InputText class="form-control" @bind-Value="Model.Username"/>
+            <ValidationMessage For="() => Model.Username"/>
+        </Field>
+        <Field Label="Email">
+            <InputText class="form-control" @bind-Value="Model.Email"/>
+            <ValidationMessage For="() => Model.Email"/>
+        </Field>
+        <Field Label="Password">
+            <InputText type="password" class="form-control" @bind-Value="Model.Password"/>
+            <ValidationMessage For="() => Model.Password"/>
+        </Field>
+        <Field Label="Confirm password">
+            <InputText type="password" class="form-control" @bind-Value="Model.ConfirmPassword"/>
+            <ValidationMessage For="() => Model.ConfirmPassword"/>
+        </Field>
+    </FieldSet>
+    <hr/>
+
+    @if (IsRegistering)
+    {
+        <button class="btn btn-primary align-self-center" disabled>
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <span role="status">Registering...</span>
+        </button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-primary align-self-center">Register</button>
+    }
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private RegistrationModel Model { get; set; } = new();
+    private bool IsRegistering { get; set; }
+    private string? Error { get; set; }
+
+    private async Task Submit()
+    {
+        IsRegistering = true;
+        Error = null;
+ 
+        try
+        {
+            await JSRuntime.InvokeAsync<string>("ajaxPostAsync", "register-form", "/auth/register");
+            NavigationManager.NavigateTo("/", true);
+        }
+        catch (JSException e)
+        {
+            Error = e.Message;
+            IsRegistering = false;
+        }
+    }
+}

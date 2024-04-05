@@ -1,0 +1,25 @@
+@attribute [Authorize]
+@page "/account"
+@using PomocKolezenska.Authorization
+
+@layout AccountLayout
+
+<h1>Account details</h1>
+
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <FieldSet>
+                <Field Label="Username:">
+                    <div class="input-group">
+                        <input class="input-group-text w-75" Value=@(context.User.GetClaim(ClaimTypes.Username))/>
+                        <Button Color="ButtonColor.Primary" class="form-control">Change</Button>
+                    </div>
+                </Field>
+                <Field Label="Password:">
+                    <Button Color="ButtonColor.Primary" class="form-control w-auto">Change</Button>
+                </Field>
+            </FieldSet>
+        </Authorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>

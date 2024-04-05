@@ -1,0 +1,8 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar strong {
+    margin-bottom: 5px;
+}

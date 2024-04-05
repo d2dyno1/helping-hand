@@ -1,0 +1,12 @@
+> div {
+    text-align: right;
+}
+
+.left {
+    background-color: var(--bs-secondary-bg);
+    height: 38px;
+}
+
+label {
+    text-align: right;
+}

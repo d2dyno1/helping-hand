@@ -1,0 +1,18 @@
+@using PomocKolezenska.Models.Request
+@using Microsoft.AspNetCore.Authentication
+
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<form @formname="LogoutForm" @onsubmit="@Submit" method="post" id="logout-form">
+    <AntiforgeryToken/>
+    <button type="submit" class="btn btn-link p-0 text-decoration-none link-danger">Log out</button>
+</form>
+
+@code {
+    private async Task Submit()
+    {
+        await JSRuntime.InvokeAsync<string>("ajaxPostAsync", "login-form", "/auth/logout");
+        NavigationManager.NavigateTo("/", true);
+    }
+}

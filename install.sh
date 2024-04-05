@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-root="src/dotnetBB/wwwroot/lib"
+root="src/PomocKolezenska/wwwroot/lib"
 rm -f "$root/*"
 mkdir "$root/bootstrap"
 mkdir "$root/bootstrap-icons"

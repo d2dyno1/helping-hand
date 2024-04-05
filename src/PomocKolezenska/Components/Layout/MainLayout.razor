@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page d-flex flex-column">
+    <NavigationBar />
+    
+    <main class="content w-100 align-self-center mt-4">
+        <noscript>
+            <Alert Color="AlertColor.Secondary">
+                <Icon Name="IconName.InfoCircle" Class="me-2" />
+                <label>JavaScript is disabled. Enable JavaScript for a better experience.</label>
+            </Alert>
+        </noscript>
+        
+        @Body
+    </main>
+    
+    <Footer />
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

@@ -1,0 +1,24 @@
+@using PomocKolezenska.Components.Shared.Forms.Authentication
+@using PomocKolezenska.Components.Shared.Navigation.Sidebar
+
+@inherits LayoutComponentBase
+@layout Layout.MainLayout
+
+<div class="d-flex gap-5">
+    <NavigationSidebar>
+        <NavigationSidebarSection Header="Settings">
+            <NavigationSidebarSectionLinkItem Href="/account">Account details</NavigationSidebarSectionLinkItem>
+            <NavigationSidebarSectionLinkItem Href="/account/privacy">Privacy</NavigationSidebarSectionLinkItem>
+            <NavigationSidebarSectionLinkItem Href="/account/preferences">Preferences</NavigationSidebarSectionLinkItem>
+        </NavigationSidebarSection>
+        <NavigationSidebarSection>
+            <NavigationSidebarSectionItem>
+                <LogoutForm/>
+            </NavigationSidebarSectionItem>
+        </NavigationSidebarSection>
+    </NavigationSidebar>
+
+    <div class="flex flex-column w-100">
+        @Body
+    </div>
+</div>

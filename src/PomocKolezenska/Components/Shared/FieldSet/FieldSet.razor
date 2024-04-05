@@ -1,0 +1,10 @@
+@namespace PomocKolezenska.Components
+
+<div class="d-flex flex-column gap-3">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

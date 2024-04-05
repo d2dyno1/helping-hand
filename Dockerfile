@@ -7,17 +7,17 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["dotnetBB/dotnetBB.csproj", "dotnetBB/"]
-RUN dotnet restore "dotnetBB/dotnetBB.csproj"
+COPY ["PomocKolezenska/PomocKolezenska.csproj", "PomocKolezenska/"]
+RUN dotnet restore "PomocKolezenska/PomocKolezenska.csproj"
 COPY . .
-WORKDIR "/src/dotnetBB"
-RUN dotnet build "dotnetBB.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/PomocKolezenska"
+RUN dotnet build "PomocKolezenska.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "dotnetBB.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "PomocKolezenska.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "dotnetBB.dll"]
+ENTRYPOINT ["dotnet", "PomocKolezenska.dll"]
