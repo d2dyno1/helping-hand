@@ -3,7 +3,10 @@ using PomocKolezenska.Data;
 using PomocKolezenska.Models.Database;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
+using PomocKolezenska.Extensions;
+using PomocKolezenska.Helpers;
 using Sodium;
 using ClaimTypes = PomocKolezenska.Authorization.ClaimTypes;
 
@@ -29,10 +32,11 @@ public class UserService
             throw new ArgumentException("This email address is already in use.");
         }
 
-        var user = new User
+        var user = new User()
         {
             Email = email,
             Username = username,
+            UserImageBase64 = await ImageConversionHelpers.ConvertToBase64Async(ImageConversionHelpers.OpenDefaultProfilePicture()),
             HashedPassword = PasswordHash.ArgonHashString(password)
         };
 
@@ -42,9 +46,14 @@ public class UserService
         return user;
     }
     
-    public Task<User?> GetUserByIdAsync(Guid id)
+    public async Task<User?> GetUser(AuthenticationStateProvider authenticationStateProvider)
     {
-        return _context.Users.FirstOrDefaultAsync(user => user.Id == id);
+        var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var userId = state.User.GetClaim(ClaimTypes.UserId);
+        if (userId is null)
+            return null;
+
+        return await _context.Users.FirstOrDefaultAsync(user => user.Id == Guid.Parse(userId));
     }
 
     public Task LogInAsync(User user, HttpContext httpContext)
@@ -53,7 +62,8 @@ public class UserService
         {
             new(ClaimTypes.Email, user.Email),
             new(ClaimTypes.UserId, user.Id.ToString()),
-            new(ClaimTypes.Username, user.Username)
+            new(ClaimTypes.Username, user.Username),
+            // new(ClaimTypes.UserImage, user.UserImageBase64)
         };
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 

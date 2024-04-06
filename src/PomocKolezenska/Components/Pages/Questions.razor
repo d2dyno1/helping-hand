@@ -1,0 +1,19 @@
+@using PomocKolezenska.Components.Shared.Forms.Authentication
+
+@page "/questions"
+
+<div>
+    Test
+</div>
+
+<StaticModal @ref="LoginModal" Title="Log in" Size="ModalSize.Large">
+    <BodyTemplate>
+        <LoginForm />
+    </BodyTemplate>
+</StaticModal>
+
+<StaticModal @ref="RegisterModal" Title="Register" Size="ModalSize.Large">
+    <BodyTemplate>
+        <RegisterForm />
+    </BodyTemplate>
+</StaticModal>

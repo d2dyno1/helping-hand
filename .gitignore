@@ -7,3 +7,7 @@ riderModule.iml
 node_modules
 #src/PomocKolezenska/wwwroot/lib
 PomocKolezenska.db
+.vs/
+*.csproj.user
+*.db-shm
+*.db-wal

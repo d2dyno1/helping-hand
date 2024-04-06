@@ -2,7 +2,9 @@
 @using PomocKolezenska.Authorization
 @using PomocKolezenska.Components.Pages
 
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+@inject UserService UserService
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid p-0">
@@ -23,9 +25,13 @@
             <CascadingAuthenticationState>
                 <AuthorizeView>
                     <Authorized>
-                        <a href="/account" class="link-body-emphasis me-3 text-decoration-none">
-                            @context.User.GetClaim(ClaimTypes.Username)
-                        </a>
+                        <div class="d-flex align-items-center">
+                            <a href="/account" class="link-body-emphasis me-3 text-decoration-none">
+                                @context.User.GetClaim(ClaimTypes.Username)
+                                @context.User.GetClaim(ClaimTypes.UserImage)
+                            </a>
+                            <img class="img-thumbnail profile-picture" src="data:image/png;base64, @(UserImage)" width="32"/>
+                        </div>
                     </Authorized>
                     <NotAuthorized>
                         <div class="d-flex btn-group">

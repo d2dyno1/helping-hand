@@ -5,6 +5,7 @@ using PomocKolezenska.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
+using PomocKolezenska.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -55,6 +56,7 @@ services
 
 
 var app = builder.Build();
+EnvironmentHelpers.AppInstance = app;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

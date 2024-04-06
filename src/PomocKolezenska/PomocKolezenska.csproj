@@ -26,6 +26,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="wwwroot\assets\profile-picture.png" />
+    </ItemGroup>
+
+    <ItemGroup>
       <PackageReference Include="Blazor.Bootstrap" Version="1.10.5" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.1" />

@@ -1,3 +1,11 @@
 .container-fluid {
     max-width: var(--max-page-width);
 }
+
+.profile-picture {
+    border-radius: 50%;
+}
+
+.profile-wrapper {
+    gap: 8px;
+}

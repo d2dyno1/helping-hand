@@ -1,3 +1,48 @@
 ﻿@page "/"
 
-<label>Index</label>
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject UserService UserService
+
+<div>
+    <CascadingAuthenticationState>
+        <AuthorizeView>
+            <NotAuthorized>
+                <h2>
+                    Witamy w pomocy koleżeńskiej!
+                </h2>
+                <p>
+                    Zaloguj się, aby przeglądać najnowsze wpisy
+                </p>
+                <a
+                    href="/login"
+                    class="btn btn-primary"
+                    @onclick="OnLoginClick"
+                    @onclick:preventDefault="true">
+                    Log in
+                </a>
+            </NotAuthorized>
+            <Authorized>
+                <main>
+                    <h2>
+                        Twoje wpisy
+                    </h2>
+                    <div>
+                        TODO
+                    </div>
+                    <h2>
+                        Ostatnie wpisy
+                    </h2>
+                    <div>
+                        TODO
+                    </div>
+                </main>
+            </Authorized>
+        </AuthorizeView>
+    </CascadingAuthenticationState>
+</div>
+
+<StaticModal @ref="LoginModal" Title="Log in" Size="ModalSize.Large">
+    <BodyTemplate>
+        <LoginForm />
+    </BodyTemplate>
+</StaticModal>

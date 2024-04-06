@@ -3,6 +3,8 @@
 @using PomocKolezenska.Authorization
 
 @layout AccountLayout
+@inject UserService UserService
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <h1>Account details</h1>
 
@@ -14,6 +16,12 @@
                     <div class="input-group">
                         <input class="input-group-text w-75" Value=@(context.User.GetClaim(ClaimTypes.Username))/>
                         <Button Color="ButtonColor.Primary" class="form-control">Change</Button>
+                    </div>
+                </Field>
+                <Field Label="Profile picture:">
+                    <div class="form-group d-flex flex-column justify-content-center align-items-start">
+                        <img alt="Profile picture" class="img-thumbnail profile-picture" src="data:image/jpg;base64, @(UserImage)" />
+                        <InputFile OnChange="ChangeProfileAsync" accept=".png">Change</InputFile>
                     </div>
                 </Field>
                 <Field Label="Password:">
