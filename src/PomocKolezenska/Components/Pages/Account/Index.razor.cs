@@ -15,7 +15,7 @@ public partial class Index
     public async Task ChangeProfileAsync(InputFileChangeEventArgs e)
     {
         var file = e.File;
-        var user = await UserService.GetUser(AuthenticationStateProvider);
+        var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
         if (user is null)
             return;
 
@@ -26,7 +26,7 @@ public partial class Index
 
     private async Task UpdateProfilePictureAsync()
     {
-        var user = await UserService.GetUser(AuthenticationStateProvider);
+        var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
         UserImage = user?.UserImageBase64;
     }
 }

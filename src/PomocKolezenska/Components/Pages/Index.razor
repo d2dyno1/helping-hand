@@ -13,13 +13,6 @@
                 <p>
                     Zaloguj się, aby przeglądać najnowsze wpisy
                 </p>
-                <a
-                    href="/login"
-                    class="btn btn-primary"
-                    @onclick="OnLoginClick"
-                    @onclick:preventDefault="true">
-                    Log in
-                </a>
             </NotAuthorized>
             <Authorized>
                 <main>
@@ -40,9 +33,3 @@
         </AuthorizeView>
     </CascadingAuthenticationState>
 </div>
-
-<StaticModal @ref="LoginModal" Title="Log in" Size="ModalSize.Large">
-    <BodyTemplate>
-        <LoginForm />
-    </BodyTemplate>
-</StaticModal>

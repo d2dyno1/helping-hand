@@ -1,0 +1,7 @@
+@namespace PomocKolezenska.Components.Pages
+
+@inject ApplicationDbContext ApplicationDbContext
+
+@page "/questions/{id}"
+<h1>@Question.Title</h1>
+<label>@Question.Content</label>

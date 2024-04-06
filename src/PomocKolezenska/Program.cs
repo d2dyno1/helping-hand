@@ -14,7 +14,9 @@ services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 services.AddDbContextFactory<ApplicationDbContext>(options =>
-    options.UseSqlite($"Data Source=PomocKolezenska.db"));
+{
+    options.UseSqlite($"Data Source=PomocKolezenska.db");
+});
 
 services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

@@ -1,3 +1,5 @@
+using PomocKolezenska.Data;
+
 namespace PomocKolezenska.Components.Layout;
 
 public partial class NavigationBar
@@ -9,7 +11,7 @@ public partial class NavigationBar
 
     protected override async Task OnInitializedAsync()
     {
-        var user = await UserService.GetUser(AuthenticationStateProvider);
+        var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
         UserImage = user?.UserImageBase64;
     }
 

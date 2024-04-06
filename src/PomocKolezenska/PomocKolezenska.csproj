@@ -36,4 +36,8 @@
       <PackageReference Include="Sodium.Core" Version="1.3.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Pages\Questions\Questions.razor" />
+    </ItemGroup>
+
 </Project>

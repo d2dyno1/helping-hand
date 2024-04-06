@@ -46,14 +46,14 @@ public class UserService
         return user;
     }
     
-    public async Task<User?> GetUser(AuthenticationStateProvider authenticationStateProvider)
+    public async Task<User?> GetUser(ApplicationDbContext context, AuthenticationStateProvider authenticationStateProvider)
     {
         var state = await authenticationStateProvider.GetAuthenticationStateAsync();
         var userId = state.User.GetClaim(ClaimTypes.UserId);
         if (userId is null)
             return null;
 
-        return await _context.Users.FirstOrDefaultAsync(user => user.Id == Guid.Parse(userId));
+        return await context.Users.FirstOrDefaultAsync(user => user.Id == Guid.Parse(userId));
     }
 
     public Task LogInAsync(User user, HttpContext httpContext)
