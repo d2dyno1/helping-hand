@@ -1,0 +1,30 @@
+# Lista do zrobienia:
+
+- wybór przedmiotu
+- wybór tematu
+- filtr osób
+- wybór roku nauczania
+- terminarz korepetycji
+- wyszukiwarka korepetytorów
+- dane kontaktowe
+- potwierdzenie adresu email
+- filtrowanie pytań (np poprzez przedmioty szkolne i klasę
+- strona forum społeczności
+- zadawanie pytań na forum
+- możliwośc dodawania odpowiedzi do pytań
+- grafiki (zdjęcia na stronie, np. obrazki podręczników)
+- wyszukiwanie pytań
+- punkty przyznawane za pomaganie innym użytkownikom
+- strona do umawiania korepetycji
+- komunikat o ciasteczkach
+- polityka prywatności
+- regulamin użytkowania
+- możliwość zmiany hasła
+- system zgłoszeń złamania regulaminu
+- możliwość zmiany nazwy
+- ułatwienia dostępności
+- zgłaszanie bugów strony i problemów z jej funkcjonowaniem
+- zdalne korepetycje
+- załączniki w odpowiedziach na pytania
+- odzyskiwanie hasła emailem
+- edycja wiadomości
