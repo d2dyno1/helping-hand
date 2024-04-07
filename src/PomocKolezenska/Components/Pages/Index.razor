@@ -9,34 +9,48 @@
     <CascadingAuthenticationState>
         <AuthorizeView>
             <NotAuthorized>
-                <h2>
-                    Witamy w pomocy koleżeńskiej!
-                </h2>
-                <p>
-                    Zaloguj się, aby przeglądać najnowsze wpisy
-                </p>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="d-flex flex-column rounded-3 w-50 align-items-center justify-content-center p-5 bg-body-secondary">
+                        <h2>
+                            Witamy w Helping Hand!
+                        </h2>
+                        <p>
+                            Zaloguj się, aby kontynuować
+                        </p>
+                    </div>
+                </div>
             </NotAuthorized>
             <Authorized>
-                <main>
-                    <h2 style="display: inline-block">Twoje wpisy</h2>
-                    <Button Color="ButtonColor.Success" @onclick="@OpenNewQuestionModalAsync">Zadaj pytanie</Button>
+                <div class="p-2">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h2 style="display: inline-block">Twoje pytania</h2>
+                        <Button Color="ButtonColor.Success" @onclick="@OpenNewQuestionModalAsync"><i class="bi bi-plus"></i></Button>
+                    </div>
+                    @if (UserQuestions.Count == 0)
+                    {
+                        <div class="mb-4 mt-2">Nie dodałeś jeszcze żadnych pytań</div>
+                    }
                     <div>
                         @foreach (var question in UserQuestions)
                         {
-                            <QuestionCard Question="@question" />
+                            <QuestionCard Question="@question"/>
                         }
                     </div>
-                    
+
                     <h2>
-                        Ostatnie wpisy
+                        Najnowsze pytania
                     </h2>
+                    @if (AllQuestions.Count == 0)
+                    {
+                        <div class="mb-4 mt-2">Brak dodanych pytań</div>
+                    }
                     <div>
                         @foreach (var question in AllQuestions)
                         {
                             <QuestionCard Question="@question"></QuestionCard>
                         }
                     </div>
-                </main>
+                </div>
             </Authorized>
         </AuthorizeView>
     </CascadingAuthenticationState>
@@ -51,17 +65,19 @@
             OnValidSubmit="@OnSubmitAsync">
 
             <FieldSet>
-                <Field Label="Tytuł:">
-                    <InputText class="form-control" @bind-Value="Model.Title"/>
+                <Field>
+                    <label>Tytuł pytania:</label>
+                    <InputText placeholder="Wprowadź tytuł" class="form-control" @bind-Value="Model.Title"/>
                     <ValidationMessage For="() => Model.Title"/>
                 </Field>
-                <Field Label="Treść:">
-                    <InputTextArea class="form-control" @bind-Value="Model.Content"/>
+                <Field>
+                    <label>Treść pytania:</label>
+                    <InputTextArea placeholder="Wprowadź treść pytania. Pamiętaj, aby uwzględnić najważniejsze informacje" class="form-control" @bind-Value="Model.Content"/>
                     <ValidationMessage For="() => Model.Content"/>
                 </Field>
             </FieldSet>
 
-            <button type="submit" class="btn btn-primary align-self-center">Dodaj</button>
+            <button type="submit" class="btn mt-3 btn-primary align-self-center">Zamieść pytanie</button>
         </EditForm>
     </BodyTemplate>
 </StaticModal>

@@ -40,8 +40,14 @@ public class ApplicationDbContext : DbContext
         //     .UsingEntity<UserSubjects>();
 
         modelBuilder.Entity<Subject>().ToTable("Subjects")
-            .HasData(new Subject { Id = 1, Name = "Język polski" },
-                new Subject { Id = 2, Name = "Język niemieci" });
+            .HasData(
+                new Subject { Id = 1, Name = "Język polski" },
+                new Subject { Id = 2, Name = "Język niemiecki" },
+                new Subject { Id = 3, Name = "Język hebrajski" },
+                new Subject { Id = 4, Name = "Matematyka" },
+                new Subject { Id = 5, Name = "Chemia" },
+                new Subject { Id = 6, Name = "Fizyka" },
+                new Subject { Id = 7, Name = "Projektowanie oprogramowania" });
 
         modelBuilder.Entity<UserSubjects>().ToTable("UserSubjects");
     }

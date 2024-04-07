@@ -6,6 +6,6 @@
     color: red;
 }
 
-.form-wrapper {
-    /* TODO */
+.left-line {
+    border-left: 2px solid #e2e3e5;
 }

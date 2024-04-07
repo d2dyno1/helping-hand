@@ -9,41 +9,38 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid p-0">
-        <a class="navbar-brand" href="/">Pomoc Koleżeńska</a>
+        <a class="navbar-brand" href="/">Helping Hand</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/tutors">Korepetytorzy</a>
-                </li>
-            </ul>
-            
             <CascadingAuthenticationState>
                 <AuthorizeView>
                     <Authorized>
-                        <div class="d-flex align-items-center">
-                            <a href="/account" class="link-body-emphasis me-3 text-decoration-none">
-                                @context.User.GetClaim(ClaimTypes.Username)
-                                @context.User.GetClaim(ClaimTypes.UserImage)
-                            </a>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active bg-secondary-subtle p-2 ps-3 pe-3 rounded-2" aria-current="page" href="/tutors">Korepetytorzy</a>
+                            </li>
+                        </ul>
+                        <a href="/account" class="d-flex gap-2 align-items-center bg-secondary-subtle p-2 ps-3 pe-3 rounded-2 link-body-emphasis me-3 text-decoration-none">
+                            @context.User.GetClaim(ClaimTypes.Username)
+                            @context.User.GetClaim(ClaimTypes.UserImage)
                             <img class="img-thumbnail rounded-circle" src="data:image/png;base64, @(UserImage)" width="32"/>
-                        </div>
+                        </a>
                     </Authorized>
                     <NotAuthorized>
-                        <div class="d-flex btn-group">
+                        <div class="navbar-nav me-auto mb-2 mb-lg-0"></div>
+                        <div class="d-flex btn-group shadow">
                             <a
-                                class="btn btn-dark"
+                                class="btn btn-light"
                                 @onclick="OnLoginClick"
                                 @onclick:preventDefault="true">
-                                Logowanie
+                                Zaloguj się
                             </a>
-                            <a
-                                class="btn btn-dark"
-                                @onclick="OnRegisterClick"
-                                @onclick:preventDefault="true">
-                                Rejestracja
+                            <a class="btn btn-light"
+                               @onclick="OnRegisterClick"
+                               @onclick:preventDefault="true">
+                                Stwórz konto
                             </a>
                         </div>
                     </NotAuthorized>
@@ -53,13 +50,13 @@
     </div>
 </nav>
 
-<StaticModal @ref="LoginModal" Title="Logowanie" Size="ModalSize.Large">
+<StaticModal @ref="LoginModal" Title="Zaloguj się" Size="ModalSize.Large">
     <BodyTemplate>
         <LoginForm />
     </BodyTemplate>
 </StaticModal>
 
-<StaticModal @ref="RegisterModal" Title="Rejestracja" Size="ModalSize.Large">
+<StaticModal @ref="RegisterModal" Title="Zarejestruj się" Size="ModalSize.Large">
     <BodyTemplate>
         <RegisterForm />
     </BodyTemplate>

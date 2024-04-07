@@ -8,22 +8,32 @@
 @inject UserService UserService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<h1>Korepetycje</h1>
+<h1 class="mb-4">Informacje o koncie</h1>
 
 <FieldSet>
-    <Field Label="Przedmioty:">
-        @foreach (var subject in Subjects)
-        {
-            <SubjectCheckBox Subject="@subject" />
-        }
-    </Field>
+    <div>
+        <h6>Specjalizacja w przedmiotach</h6>
+        <div class="p-2 rounded-2 bg-body-tertiary">
+            <Field Label="Przedmioty:">
+                @foreach (var subject in Subjects)
+                {
+                    <SubjectCheckBox Subject="@subject"/>
+                }
+            </Field>
+        </div>
+    </div>
     
-    <Field Label="E-mail:">
-        <input class="form-control" @bind="Email"/>
-    </Field>
-    <Field Label="Numer telefonu:">
-        <input class="form-control" @bind="PhoneNumber"/>
-    </Field>
+    <div>
+        <h6>Dane kontaktowe</h6>
+        <div class="p-2 rounded-2 bg-body-tertiary d-flex flex-column gap-1">
+            <Field Label="E-mail:">
+                <input placeholder="Twój email" class="form-control" @bind="Email"/>
+            </Field>
+            <Field Label="Numer telefonu:">
+                <input placeholder="Twój numer telefonu" class="form-control" @bind="PhoneNumber"/>
+            </Field>
+        </div>
+    </div>
 </FieldSet>
 
 @code

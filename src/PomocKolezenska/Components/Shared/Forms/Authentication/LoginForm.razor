@@ -24,12 +24,14 @@
     }
 
     <FieldSet>
-        <Field Label="E-mail:">
-            <InputText class="form-control" @bind-Value="Model.EmailOrUsername" />
+        <Field>
+            <label>Email:</label>
+            <InputText placeholder="Wprowadź email" class="form-control" @bind-Value="Model.EmailOrUsername" />
             <ValidationMessage For="() => Model.EmailOrUsername"/>
         </Field>
-        <Field Label="Hasło:">
-            <InputText type="password" class="form-control" @bind-Value="Model.Password" />
+        <Field>
+            <label>Hasło:</label>
+            <InputText placeholder="Wprowadź hasło" type="password" class="form-control" @bind-Value="Model.Password"/>
             <ValidationMessage For="() => Model.Password"/>
         </Field>
         <Field>
@@ -45,7 +47,6 @@
     {
         <button class="btn btn-primary align-self-center" disabled>
             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Logowanie...</span>
         </button>
     }
     else

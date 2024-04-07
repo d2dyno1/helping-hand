@@ -5,17 +5,19 @@
 @layout Layout.MainLayout
 
 <div class="d-flex gap-5">
-    <NavigationSidebar>
-        <NavigationSidebarSection Header="Settings">
-            <NavigationSidebarSectionLinkItem Href="/account">Konto</NavigationSidebarSectionLinkItem>
-            <NavigationSidebarSectionLinkItem Href="/account/contact">Korepetycje</NavigationSidebarSectionLinkItem>
-        </NavigationSidebarSection>
-        <NavigationSidebarSection>
-            <NavigationSidebarSectionItem>
-                <LogoutForm/>
-            </NavigationSidebarSectionItem>
-        </NavigationSidebarSection>
-    </NavigationSidebar>
+    <div class="p-4 rounded-3 h-75 bg-body-tertiary">
+        <NavigationSidebar>
+            <NavigationSidebarSection Header="Nawigacja">
+                <NavigationSidebarSectionLinkItem Href="/account">Konto</NavigationSidebarSectionLinkItem>
+                <NavigationSidebarSectionLinkItem Href="/account/contact">Informacje o koncie</NavigationSidebarSectionLinkItem>
+            </NavigationSidebarSection>
+            <NavigationSidebarSection>
+                <NavigationSidebarSectionItem>
+                    <LogoutForm/>
+                </NavigationSidebarSectionItem>
+            </NavigationSidebarSection>
+        </NavigationSidebar>
+    </div>
 
     <div class="flex flex-column w-100">
         @Body

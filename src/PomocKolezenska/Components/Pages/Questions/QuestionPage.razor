@@ -7,16 +7,20 @@
 
 @page "/questions/{id}"
 
-<div>
+<div class="bg-body-tertiary p-3 rounded-2">
     <div class="d-flex flex-column question-head">
+        <div>
+            <span>Pytania</span>
+            <span>·</span>
+            <span class="fst-italic small">@(Question.CreationDate)</span>
+        </div>
         <h1>@Question.Title</h1>
         <p>@Question.Content</p>
-        <p class="fst-italic small">@(Question.CreationDate)</p>
     </div>
-
 </div>
 
-<div class="mb-lg-4 form-wrapper">
+<h4 class="mt-4">Odpowiedzi</h4>
+<div>
     <EditForm
         Model="@Model"
         FormName="NewQuestion"
@@ -30,19 +34,21 @@
             </Field>
         </FieldSet>
 
-        <button type="submit" class="btn btn-primary align-self-center mt-lg-3">Skomentuj</button>
+        <button type="submit" class="btn btn-primary align-self-center mt-lg-3">Odpowiedz</button>
     </EditForm>
 </div>
 
-<h4>Odpowiedzi</h4>
+<br />
+<br />
+
 @foreach (var reply in Question.Replies)
 {
-    <div class="d-flex mb-3 flex-column gap-lg-2 p-2 rounded-2 bg-body-secondary">
+    <div class="d-flex mb-3 flex-column gap-2 p-3 left-line">
         <div class="d-flex flex-row gap-2 align-items-center">
-            <img class="img-thumbnail rounded-circle" width="32" src="data:image/png;base64, @(reply.Author.UserImageBase64)" />
-            <b>@(reply.Author.Username)</b>
+            <img class="img-thumbnail rounded-circle" width="32" src="data:image/png;base64, @(reply.Author.UserImageBase64)"/>
+            <span><b>@(reply.Author.Username)</b><i>, pisze:</i></span>
         </div>
-        
+
         <p>
             @(reply.Content)
         </p>
@@ -52,6 +58,6 @@
 @if (Question.Replies.Count == 0)
 {
     <p>
-        Nie ma jeszcze odpowiedzi
+        Dodaj swoją odpowiedź jako pierwszy!
     </p>
 }

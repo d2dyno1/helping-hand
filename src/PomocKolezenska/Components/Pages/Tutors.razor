@@ -14,6 +14,11 @@
 
 <br/>
 
+@if (TutorsList.Count == 0)
+{
+    <p>Nie znaleziono korepetytorów</p>
+}
+
 @foreach (var tutor in TutorsList)
 {
     <div class="bg-body-tertiary p-3 rounded-2 d-flex flex-column gap-3">
@@ -22,11 +27,36 @@
             <h4>@(tutor.Username)</h4>
         </div>
         <div>
-            <i>Specjalizacja w przedmiotach: </i>
-            <b>@string.Join(", ", tutor.Subjects)</b>
+            @foreach (var subject in tutor.Subjects)
+            {
+                <div class="p-2 rounded-5 m-lg-1 d-inline-block bg-body-secondary">
+                    <b>@subject</b>
+                </div>
+            }
         </div>
         <div>
-            <label>@(tutor.Email) @(tutor.Phone)</label> 
+            <p>
+                <b>Email:</b>&nbsp;
+                @if (string.IsNullOrEmpty(tutor.Email))
+                {
+                    <i>Nie podano adresu Email</i>
+                }
+                else
+                {
+                    <a href="mailto:@(tutor.Email)">@(tutor.Email)</a>
+                }
+            </p>
+            <p>
+                <b>Numer telefonu:</b>&nbsp;
+                @if (string.IsNullOrEmpty(tutor.Phone))
+                {
+                    <i>Nie podano numeru telefonu</i>
+                }
+                else
+                {
+                    <a href="mailto:@(tutor.Phone)">@(tutor.Phone)</a>
+                }
+            </p>
         </div>
     </div>
     <br/>
