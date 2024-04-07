@@ -1,0 +1,11 @@
+﻿.question-head {
+    gap: 8px;
+}
+
+.field-align > label {
+    color: red;
+}
+
+.form-wrapper {
+    /* TODO */
+}

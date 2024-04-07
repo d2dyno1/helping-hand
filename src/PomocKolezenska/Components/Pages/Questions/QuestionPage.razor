@@ -6,27 +6,52 @@
 @inject UserService UserService
 
 @page "/questions/{id}"
-<h1>@Question.Title</h1>
-<label>@Question.Content</label>
 
-<h6>Odpowiedzi</h6>
+<div>
+    <div class="d-flex flex-column question-head">
+        <h1>@Question.Title</h1>
+        <p>@Question.Content</p>
+        <p class="fst-italic small">@(Question.CreationDate)</p>
+    </div>
+
+</div>
+
+<div class="mb-lg-4 form-wrapper">
+    <EditForm
+        Model="@Model"
+        FormName="NewQuestion"
+        Enhance="true"
+        OnValidSubmit="@OnSubmitAsync">
+
+        <FieldSet>
+            <Field Class="flex-column justify-content-center align-items-start field-align">
+                <InputTextArea class="form-control" placeholder="Dodaj swoją odpowiedź" @bind-Value="Model.Content" />
+                <ValidationMessage For="() => Model.Content"/>
+            </Field>
+        </FieldSet>
+
+        <button type="submit" class="btn btn-primary align-self-center mt-lg-3">Skomentuj</button>
+    </EditForm>
+</div>
+
+<h4>Odpowiedzi</h4>
 @foreach (var reply in Question.Replies)
 {
-    <label>@reply.Author.Username: @reply.Content</label><br/>
+    <div class="d-flex mb-3 flex-column gap-lg-2 p-2 rounded-2 bg-body-secondary">
+        <div class="d-flex flex-row gap-2 align-items-center">
+            <img class="img-thumbnail rounded-circle" width="32" src="data:image/png;base64, @(reply.Author.UserImageBase64)" />
+            <b>@(reply.Author.Username)</b>
+        </div>
+        
+        <p>
+            @(reply.Content)
+        </p>
+    </div>
 }
 
-<EditForm
-    Model="@Model"
-    FormName="NewQuestion"
-    Enhance="true"
-    OnValidSubmit="@OnSubmitAsync">
-
-    <FieldSet>
-        <Field Label="Treść:">
-            <InputText class="form-control" @bind-Value="Model.Content"/>
-            <ValidationMessage For="() => Model.Content"/>
-        </Field>
-    </FieldSet>
-
-    <button type="submit" class="btn btn-primary align-self-center">Dodaj</button>
-</EditForm>
+@if (Question.Replies.Count == 0)
+{
+    <p>
+        Nie ma jeszcze odpowiedzi
+    </p>
+}

@@ -26,7 +26,7 @@ public partial class Index
     public async Task ChangeProfileNameAsync()
     {
         return;
-
+        
         // var user = await UserService.GetUser(AuthenticationStateProvider);
         // if (user is null && user.Username != UsernameText)
         //     return;

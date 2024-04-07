@@ -31,7 +31,7 @@
                                 @context.User.GetClaim(ClaimTypes.Username)
                                 @context.User.GetClaim(ClaimTypes.UserImage)
                             </a>
-                            <img class="img-thumbnail profile-picture" src="data:image/png;base64, @(UserImage)" width="32"/>
+                            <img class="img-thumbnail rounded-circle" src="data:image/png;base64, @(UserImage)" width="32"/>
                         </div>
                     </Authorized>
                     <NotAuthorized>
