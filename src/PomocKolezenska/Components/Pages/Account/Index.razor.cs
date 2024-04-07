@@ -43,8 +43,9 @@ public partial class Index
 
         await using var stream = file.OpenReadStream();
         user.UserImageBase64 = await ImageConversionHelpers.ConvertToBase64Async(stream);
+        ApplicationDbContext.Update(user);
         await UpdateProfilePictureAsync();
-        await UserService.SaveAsync();
+        await ApplicationDbContext.SaveChangesAsync();
     }
 
     private async Task UpdateProfilePictureAsync()
