@@ -40,16 +40,16 @@ public partial class Tutors
         TutorsList = users.Select(x => new Tutor
         {
             Username = x.Username,
+            UserImageBase64 = x.UserImageBase64,
             Subjects = ApplicationDbContext.UserSubjects.Where(y => y.UsersId == x.Id)
                 .Select(y => ApplicationDbContext.Subjects.First(z => z.Id == y.SubjectsId).Name).ToList()
         }).ToList();
-
-
     }
 
-    class Tutor
+    private sealed class Tutor
     {
         public string Username { get; set; }
+        public string UserImageBase64 { get; set; }
         public List<string> Subjects { get; set; }
     }
 }

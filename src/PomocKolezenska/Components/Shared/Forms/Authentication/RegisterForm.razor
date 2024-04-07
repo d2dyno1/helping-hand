@@ -21,20 +21,20 @@
     }
     
     <FieldSet>
-        <Field Label="Username">
-            <InputText class="form-control" @bind-Value="Model.Username"/>
+        <Field>
+            <InputText placeholder="Nazwa u¿ytkownika" class="form-control" @bind-Value="Model.Username" />
             <ValidationMessage For="() => Model.Username"/>
         </Field>
-        <Field Label="Email">
-            <InputText class="form-control" @bind-Value="Model.Email"/>
+        <Field>
+            <InputText placeholder="Email" class="form-control" @bind-Value="Model.Email" />
             <ValidationMessage For="() => Model.Email"/>
         </Field>
-        <Field Label="Password">
-            <InputText type="password" class="form-control" @bind-Value="Model.Password"/>
+        <Field>
+            <InputText placeholder="Has³o" type="password" class="form-control" @bind-Value="Model.Password" />
             <ValidationMessage For="() => Model.Password"/>
         </Field>
-        <Field Label="Confirm password">
-            <InputText type="password" class="form-control" @bind-Value="Model.ConfirmPassword"/>
+        <Field>
+            <InputText placeholder="PotwierdŸ has³o" type="password" class="form-control" @bind-Value="Model.ConfirmPassword" />
             <ValidationMessage For="() => Model.ConfirmPassword"/>
         </Field>
     </FieldSet>
@@ -44,12 +44,12 @@
     {
         <button class="btn btn-primary align-self-center" disabled>
             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Registering...</span>
+            <span role="status">£¹czenie z baz¹ danych, proszê czekaæ...</span>
         </button>
     }
     else
     {
-        <button type="submit" class="btn btn-primary align-self-center">Register</button>
+        <button type="submit" class="btn btn-primary align-self-center">Zarejestruj siê</button>
     }
 </EditForm>
 

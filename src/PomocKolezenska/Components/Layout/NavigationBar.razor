@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/tutors">Tutors</a>
+                    <a class="nav-link active" aria-current="page" href="/tutors">Korepetytorzy</a>
                 </li>
             </ul>
             
@@ -38,14 +38,14 @@
                                 class="btn btn-dark"
                                 @onclick="OnLoginClick"
                                 @onclick:preventDefault="true">
-                                Log in
+                                Zaloguj siê
                             </a>
                             <a
                                 href="/register"
                                 class="btn btn-dark"
                                 @onclick="OnRegisterClick"
                                 @onclick:preventDefault="true">
-                                Register
+                                Zarejestruj siê
                             </a>
                         </div>
                     </NotAuthorized>
@@ -55,13 +55,13 @@
     </div>
 </nav>
 
-<StaticModal @ref="LoginModal" Title="Log in" Size="ModalSize.Large">
+<StaticModal @ref="LoginModal" Title="Zaloguj siê" Size="ModalSize.Large">
     <BodyTemplate>
         <LoginForm />
     </BodyTemplate>
 </StaticModal>
 
-<StaticModal @ref="RegisterModal" Title="Register" Size="ModalSize.Large">
+<StaticModal @ref="RegisterModal" Title="Zarejestruj siê" Size="ModalSize.Large">
     <BodyTemplate>
         <RegisterForm />
     </BodyTemplate>
