@@ -1,0 +1,32 @@
+@namespace PomocKolezenska.Components.Pages
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext ApplicationDbContext
+@inject NavigationManager NavigationManager
+@inject UserService UserService
+
+@page "/questions/{id}"
+<h1>@Question.Title</h1>
+<label>@Question.Content</label>
+
+<h6>Odpowiedzi</h6>
+@foreach (var reply in Question.Replies)
+{
+    <label>@reply.Author.Username: @reply.Content</label><br/>
+}
+
+<EditForm
+    Model="@Model"
+    FormName="NewQuestion"
+    Enhance="true"
+    OnValidSubmit="@OnSubmitAsync">
+
+    <FieldSet>
+        <Field Label="Treść:">
+            <InputText class="form-control" @bind-Value="Model.Content"/>
+            <ValidationMessage For="() => Model.Content"/>
+        </Field>
+    </FieldSet>
+
+    <button type="submit" class="btn btn-primary align-self-center">Dodaj</button>
+</EditForm>
