@@ -15,6 +15,9 @@ public class User
     public DateTime CreationDate { get; set; } = DateTime.Now;
     
     public bool IsAdmin { get; set; }
+    
+    public string? ContactEmailAddress { get; set; }
+    public string? ContactPhoneNumber { get; set; }
 
     public ICollection<Question> Questions { get; } = new List<Question>();
     public ICollection<QuestionReply> QuestionReplies { get; } = new List<QuestionReply>();

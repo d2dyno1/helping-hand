@@ -40,6 +40,8 @@ public partial class Tutors
         TutorsList = users.Select(x => new Tutor
         {
             Username = x.Username,
+            Phone = x.ContactPhoneNumber,
+            Email = x.ContactEmailAddress,
             UserImageBase64 = x.UserImageBase64,
             Subjects = ApplicationDbContext.UserSubjects.Where(y => y.UsersId == x.Id)
                 .Select(y => ApplicationDbContext.Subjects.First(z => z.Id == y.SubjectsId).Name).ToList()
@@ -51,5 +53,7 @@ public partial class Tutors
         public string Username { get; set; }
         public string UserImageBase64 { get; set; }
         public List<string> Subjects { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

@@ -5,7 +5,7 @@
 <h3>Korepetytorzy</h3>
 
 <select class="form-select" @bind="SubjectFilter">
-    <option selected value="-1">None</option>
+    <option selected value="-1">Wszystkie</option>
     @foreach (var subject in Subjects)
     {
         <option value="@subject.Id">@subject.Name</option>
@@ -24,6 +24,9 @@
         <div>
             <i>Specjalizacja w przedmiotach: </i>
             <b>@string.Join(", ", tutor.Subjects)</b>
+        </div>
+        <div>
+            <label>@(tutor.Email) @(tutor.Phone)</label> 
         </div>
     </div>
     <br/>

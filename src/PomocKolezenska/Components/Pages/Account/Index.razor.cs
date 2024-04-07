@@ -12,11 +12,11 @@ public partial class Index
 
     public string UsernameText { get; set; }
 
-    public List<Subject> Subjects { get; set; } = [];
+    
 
     protected override async Task OnInitializedAsync()
     {
-        Subjects = ApplicationDbContext.Subjects.ToList();
+        
         
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         UsernameText = state.User.GetClaim(ClaimTypes.Username)!;

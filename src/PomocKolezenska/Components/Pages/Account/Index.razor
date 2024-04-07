@@ -16,12 +16,10 @@
                     <div class="form-group d-flex flex-row justify-content-start align-items-center gap-4">
                         <img alt="Profile picture" class="img-thumbnail rounded-circle" width="120" src="data:image/jpg;base64, @(UserImage)" />
                         <div class="d-flex flex-column gap-3">
-                            <Field LabelClass="me-0">
-                                <div class="input-group w-100">
-                                    <input @bind="UsernameText" class="input-group-text w-75" />
-                                    <Button Color="ButtonColor.Primary" class="form-control" onclick=@(ChangeProfileNameAsync())>Ustaw</Button>
-                                </div>
-                            </Field>
+                            <div class="input-group w-100">
+                                <input @bind="UsernameText" class="input-group-text" />
+                                <Button Color="ButtonColor.Primary" class="form-control" onclick=@(ChangeProfileNameAsync())>Ustaw</Button>
+                            </div>
                             <div>
                                 <label for="inputFile" class="p-2 rounded-2 bg-body-secondary">Zmień zdjęcie profilowe</label>
                                 <InputFile id="inputFile" OnChange="ChangeProfilePictureAsync" class="visually-hidden" accept=".png">Change</InputFile>
@@ -35,12 +33,6 @@
                         <label>Zmień hasło do konta</label>
                         <Button Color="ButtonColor.Primary" class="form-control w-auto">Zmień</Button>
                     </div>
-                </Field>
-                <Field Label="Przedmioty:">
-                    @foreach (var subject in Subjects)
-                    {
-                        <SubjectCheckBox Subject="@subject" />
-                    }
                 </Field>
             </FieldSet>
         </Authorized>

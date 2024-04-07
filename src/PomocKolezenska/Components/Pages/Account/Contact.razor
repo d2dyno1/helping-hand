@@ -1,0 +1,82 @@
+@attribute [Authorize]
+@page "/account/contact"
+@using PomocKolezenska.Models.Database
+
+@layout AccountLayout
+
+@inject ApplicationDbContext ApplicationDbContext
+@inject UserService UserService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h1>Korepetycje</h1>
+
+<FieldSet>
+    <Field Label="Przedmioty:">
+        @foreach (var subject in Subjects)
+        {
+            <SubjectCheckBox Subject="@subject" />
+        }
+    </Field>
+    
+    <Field Label="E-mail:">
+        <input class="form-control" @bind="Email"/>
+    </Field>
+    <Field Label="Numer telefonu:">
+        <input class="form-control" @bind="PhoneNumber"/>
+    </Field>
+</FieldSet>
+
+@code
+{
+    
+    private string _email;
+    private string _phoneNumber;
+    
+    public List<Subject> Subjects { get; set; } = [];
+
+    private string Email
+    {
+        get => _email;
+        set
+        {
+            _email = value;
+            UpdateContactInformationAsync(true);
+        }
+    }
+
+    private string PhoneNumber
+    {
+        get => _phoneNumber;
+        set
+        {
+            _phoneNumber = value;
+            UpdateContactInformationAsync(false);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
+        if (user is null)
+            return;
+        
+        Subjects = ApplicationDbContext.Subjects.ToList();
+
+        Email = user.ContactEmailAddress;
+        PhoneNumber = user.ContactPhoneNumber;
+    }
+
+    private async Task UpdateContactInformationAsync(bool a)
+    {
+        var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
+        if (user is null)
+            return;
+
+        if (a)
+            user.ContactEmailAddress = Email;
+        else
+            user.ContactPhoneNumber = PhoneNumber;
+        ApplicationDbContext.Update(user);
+        await ApplicationDbContext.SaveChangesAsync();
+    }
+}

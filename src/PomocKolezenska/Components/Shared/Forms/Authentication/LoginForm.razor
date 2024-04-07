@@ -24,18 +24,18 @@
     }
 
     <FieldSet>
-        <Field>
-            <InputText placeholder="Email lub nazwa u¿ytkownika" class="form-control" @bind-Value="Model.EmailOrUsername" />
+        <Field Label="E-mail:">
+            <InputText class="form-control" @bind-Value="Model.EmailOrUsername" />
             <ValidationMessage For="() => Model.EmailOrUsername"/>
         </Field>
-        <Field>
-            <InputText placeholder="Has³o" type="password" class="form-control" @bind-Value="Model.Password" />
+        <Field Label="HasÅ‚o:">
+            <InputText type="password" class="form-control" @bind-Value="Model.Password" />
             <ValidationMessage For="() => Model.Password"/>
         </Field>
         <Field>
             <div class="for-check">
                 <input class="form-check-input" type="checkbox" id="remember">
-                <label class="form-check-label" for="remember">Zapamiêtaj login</label>
+                <label class="form-check-label" for="remember">ZapamiÄ™taj mnie</label>
             </div>
         </Field>
     </FieldSet>
@@ -45,12 +45,12 @@
     {
         <button class="btn btn-primary align-self-center" disabled>
             <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            <span role="status">Logowanie, proszê czekaæ...</span>
+            <span role="status">Logowanie...</span>
         </button>
     }
     else
     {
-        <button type="submit" class="btn btn-primary align-self-center">Zaloguj siê</button>
+        <button type="submit" class="btn btn-primary align-self-center">Zaloguj siÄ™</button>
     }
 </EditForm>
 
