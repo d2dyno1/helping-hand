@@ -18,4 +18,5 @@ public class User
 
     public ICollection<Question> Questions { get; } = new List<Question>();
     public ICollection<QuestionReply> QuestionReplies { get; } = new List<QuestionReply>();
+    public ICollection<Subject> Subjects { get; } = new List<Subject>();
 }

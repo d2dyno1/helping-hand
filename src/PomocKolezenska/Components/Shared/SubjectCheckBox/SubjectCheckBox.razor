@@ -1,0 +1,20 @@
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ApplicationDbContext ApplicationDbContext
+@inject UserService UserService
+
+@namespace PomocKolezenska.Components
+
+<div class="form-check">
+    @if (Checked)
+    {
+        <input class="form-check-input" type="checkbox" checked @onchange="@(async e => await OnCheckedChangedAsync(false))">
+    }
+    else
+    {
+        <input class="form-check-input" type="checkbox" @onchange="@(async e => await OnCheckedChangedAsync(true))">
+    }
+    
+    <label class="form-check-label">
+        @Subject.Name
+    </label>
+</div>

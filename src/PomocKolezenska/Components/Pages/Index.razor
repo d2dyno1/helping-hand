@@ -1,6 +1,8 @@
 ﻿@page "/"
 
+@inject ApplicationDbContext ApplicationDbContext
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
 @inject UserService UserService
 
 <div>
@@ -16,20 +18,50 @@
             </NotAuthorized>
             <Authorized>
                 <main>
-                    <h2>
-                        Twoje wpisy
-                    </h2>
+                    <h2 style="display: inline-block">Twoje wpisy</h2>
+                    <Button Color="ButtonColor.Success" @onclick="@OpenNewQuestionModalAsync">Zadaj pytanie</Button>
                     <div>
-                        TODO
+                        @foreach (var question in UserQuestions)
+                        {
+                            <QuestionCard Question="@question" />
+                        }
                     </div>
+                    
                     <h2>
                         Ostatnie wpisy
                     </h2>
                     <div>
-                        TODO
+                        @foreach (var question in AllQuestions)
+                        {
+                            <QuestionCard Question="@question"></QuestionCard>
+                        }
                     </div>
                 </main>
             </Authorized>
         </AuthorizeView>
     </CascadingAuthenticationState>
 </div>
+
+<StaticModal @ref="NewQuestionModal" Title="Zadaj pytanie" Size="ModalSize.Large">
+    <BodyTemplate>
+        <EditForm
+            Model="@Model"
+            FormName="NewQuestion"
+            Enhance="true"
+            OnValidSubmit="@OnSubmitAsync">
+
+            <FieldSet>
+                <Field Label="Tytuł:">
+                    <InputText class="form-control" @bind-Value="Model.Title"/>
+                    <ValidationMessage For="() => Model.Title"/>
+                </Field>
+                <Field Label="Treść:">
+                    <InputTextArea class="form-control" @bind-Value="Model.Content"/>
+                    <ValidationMessage For="() => Model.Content"/>
+                </Field>
+            </FieldSet>
+
+            <button type="submit" class="btn btn-primary align-self-center">Dodaj</button>
+        </EditForm>
+    </BodyTemplate>
+</StaticModal>

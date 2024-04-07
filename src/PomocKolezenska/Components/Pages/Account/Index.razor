@@ -36,6 +36,12 @@
                         <Button Color="ButtonColor.Primary" class="form-control w-auto">Zmień</Button>
                     </div>
                 </Field>
+                <Field Label="Przedmioty:">
+                    @foreach (var subject in Subjects)
+                    {
+                        <SubjectCheckBox Subject="@subject" />
+                    }
+                </Field>
             </FieldSet>
         </Authorized>
     </AuthorizeView>
