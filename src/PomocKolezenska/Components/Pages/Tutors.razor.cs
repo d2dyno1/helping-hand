@@ -5,10 +5,24 @@ namespace PomocKolezenska.Components.Pages;
 public partial class Tutors
 {
     private List<Tutor> TutorsList { get; set; }
-    public string SubjectFilter { get; set; } = "None";
+    private List<Subject> Subjects { get; set; }
+
+    private int _subjectFilter = -1;
+
+    public int SubjectFilter
+    {
+        get => _subjectFilter;
+        set
+        {
+            _subjectFilter = value;
+            RefreshUsers();
+        }
+    }
 
     protected override Task OnInitializedAsync()
     {
+        Subjects = ApplicationDbContext.Subjects.ToList();
+        
         RefreshUsers();
         return base.OnInitializedAsync();
     }
@@ -17,10 +31,9 @@ public partial class Tutors
     {
         var users = ApplicationDbContext.Users.Where(x => ApplicationDbContext.UserSubjects.Any(y => y.UsersId == x.Id))
             .ToList();
-        if (SubjectFilter != "None")
+        if (SubjectFilter != -1)
         {
-            var subjectId = ApplicationDbContext.Subjects.First(x => x.Name == SubjectFilter).Id;
-            users = ApplicationDbContext.Users.Where(x => ApplicationDbContext.UserSubjects.Any(y => y.UsersId == x.Id && y.SubjectsId == subjectId))
+            users = ApplicationDbContext.Users.Where(x => ApplicationDbContext.UserSubjects.Any(y => y.UsersId == x.Id && y.SubjectsId == SubjectFilter))
                 .ToList();
         }
 

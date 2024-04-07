@@ -4,6 +4,14 @@
 
 <h3>Tutors</h3>
 
+<select class="form-select" @bind="SubjectFilter">
+    <option selected value="-1">None</option>
+    @foreach (var subject in Subjects)
+    {
+        <option value="@subject.Id">@subject.Name</option>
+    }
+</select>
+
 @foreach (var tutor in TutorsList)
 {
     <label>@tutor.Username:</label>
