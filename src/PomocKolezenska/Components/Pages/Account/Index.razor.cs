@@ -22,11 +22,11 @@ public partial class Index
     {
         return;
 
-        var user = await UserService.GetUser(AuthenticationStateProvider);
-        if (user is null && user.Username != UsernameText)
-            return;
+        //var user = await UserService.GetUser(AuthenticationStateProvider);
+        //if (user is null && user.Username != UsernameText)
+        //    return;
 
-        user.Username = UsernameText;
+        //user.Username = UsernameText;
     }
 
     public async Task ChangeProfilePictureAsync(InputFileChangeEventArgs e)

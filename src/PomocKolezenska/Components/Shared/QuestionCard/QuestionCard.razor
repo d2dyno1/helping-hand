@@ -1,5 +1,8 @@
 @namespace PomocKolezenska.Components
 
-<a href="/questions/@(Question.Id)">
-    <h1>@Question.Title</h1>
+<a href="/questions/@(Question.Id)" class="card-link">
+    <div class="card-wrapper">
+        <h1>@Question.Title</h1>
+        <p>@(Question.Content)</p>
+    </div>
 </a>
