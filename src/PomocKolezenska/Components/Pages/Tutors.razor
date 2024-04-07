@@ -1,0 +1,12 @@
+@page "/tutors"
+
+@inject ApplicationDbContext ApplicationDbContext
+
+<h3>Tutors</h3>
+
+@foreach (var tutor in TutorsList)
+{
+    <label>@tutor.Username:</label>
+    <label>@string.Join(" ", tutor.Subjects)</label>
+    <br/>
+}

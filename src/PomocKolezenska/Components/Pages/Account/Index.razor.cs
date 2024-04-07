@@ -2,6 +2,7 @@
 using PomocKolezenska.Authorization;
 using PomocKolezenska.Extensions;
 using PomocKolezenska.Helpers;
+using PomocKolezenska.Models.Database;
 
 namespace PomocKolezenska.Components.Pages.Account;
 
@@ -11,8 +12,12 @@ public partial class Index
 
     public string UsernameText { get; set; }
 
+    public List<Subject> Subjects { get; set; } = [];
+
     protected override async Task OnInitializedAsync()
     {
+        Subjects = ApplicationDbContext.Subjects.ToList();
+        
         var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         UsernameText = state.User.GetClaim(ClaimTypes.Username)!;
         await UpdateProfilePictureAsync();
@@ -22,11 +27,11 @@ public partial class Index
     {
         return;
 
-        var user = await UserService.GetUser(AuthenticationStateProvider);
-        if (user is null && user.Username != UsernameText)
-            return;
-
-        user.Username = UsernameText;
+        // var user = await UserService.GetUser(AuthenticationStateProvider);
+        // if (user is null && user.Username != UsernameText)
+        //     return;
+        //
+        // user.Username = UsernameText;
     }
 
     public async Task ChangeProfilePictureAsync(InputFileChangeEventArgs e)

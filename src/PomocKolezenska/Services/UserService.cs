@@ -53,7 +53,7 @@ public class UserService
         if (userId is null)
             return null;
 
-        return await context.Users.FirstOrDefaultAsync(user => user.Id == Guid.Parse(userId));
+        return await context.Users.Include(x => x.Subjects).FirstOrDefaultAsync(user => user.Id == Guid.Parse(userId));
     }
 
     public Task LogInAsync(User user, HttpContext httpContext)

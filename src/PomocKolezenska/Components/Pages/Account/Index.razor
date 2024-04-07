@@ -27,6 +27,12 @@
                 <Field Label="Password:">
                     <Button Color="ButtonColor.Primary" class="form-control w-auto">Change</Button>
                 </Field>
+                <Field Label="Przedmioty:">
+                    @foreach (var subject in Subjects)
+                    {
+                        <SubjectCheckBox Subject="@subject" />
+                    }
+                </Field>
             </FieldSet>
         </Authorized>
     </AuthorizeView>
