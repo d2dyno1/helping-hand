@@ -18,10 +18,7 @@
             </NotAuthorized>
             <Authorized>
                 <main>
-                    <h2 style="display: inline-block">
-                        Twoje wpisy
-                    </h2>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <h2 style="display: inline-block">Twoje wpisy</h2>
                     <Button Color="ButtonColor.Success" @onclick="@OpenNewQuestionModalAsync">Zadaj pytanie</Button>
                     <div>
                         @foreach (var question in UserQuestions)
@@ -59,7 +56,7 @@
                     <ValidationMessage For="() => Model.Title"/>
                 </Field>
                 <Field Label="Treść:">
-                    <InputText class="form-control" @bind-Value="Model.Content"/>
+                    <InputTextArea class="form-control" @bind-Value="Model.Content"/>
                     <ValidationMessage For="() => Model.Content"/>
                 </Field>
             </FieldSet>

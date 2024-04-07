@@ -9,7 +9,10 @@ public partial class Field
 
     [Parameter]
     public string Class { get; set; } = string.Empty;
-
+    
+    [Parameter]
+    public string LabelClass { get; set; } = string.Empty;
+    
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 }
