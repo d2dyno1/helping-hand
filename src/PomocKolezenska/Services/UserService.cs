@@ -80,4 +80,9 @@ public class UserService
 
         await LogInAsync(user, httpContext);
     }
+
+    public async Task SaveAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
 }

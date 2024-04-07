@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
+using PomocKolezenska.Authorization;
+using PomocKolezenska.Extensions;
 using PomocKolezenska.Helpers;
 
 namespace PomocKolezenska.Components.Pages.Account;
@@ -7,12 +9,27 @@ public partial class Index
 {
     private string? UserImage { get; set; }
 
+    public string UsernameText { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
+        var state = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        UsernameText = state.User.GetClaim(ClaimTypes.Username)!;
         await UpdateProfilePictureAsync();
     }
 
-    public async Task ChangeProfileAsync(InputFileChangeEventArgs e)
+    public async Task ChangeProfileNameAsync()
+    {
+        return;
+
+        var user = await UserService.GetUser(AuthenticationStateProvider);
+        if (user is null && user.Username != UsernameText)
+            return;
+
+        user.Username = UsernameText;
+    }
+
+    public async Task ChangeProfilePictureAsync(InputFileChangeEventArgs e)
     {
         var file = e.File;
         var user = await UserService.GetUser(ApplicationDbContext, AuthenticationStateProvider);
@@ -22,6 +39,7 @@ public partial class Index
         await using var stream = file.OpenReadStream();
         user.UserImageBase64 = await ImageConversionHelpers.ConvertToBase64Async(stream);
         await UpdateProfilePictureAsync();
+        await UserService.SaveAsync();
     }
 
     private async Task UpdateProfilePictureAsync()
