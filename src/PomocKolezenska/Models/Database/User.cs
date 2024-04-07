@@ -17,4 +17,5 @@ public class User
     public bool IsAdmin { get; set; }
 
     public ICollection<Question> Questions { get; } = new List<Question>();
+    public ICollection<QuestionReply> QuestionReplies { get; } = new List<QuestionReply>();
 }
