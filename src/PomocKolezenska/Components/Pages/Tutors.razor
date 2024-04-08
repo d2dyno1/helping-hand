@@ -2,9 +2,9 @@
 
 @inject ApplicationDbContext ApplicationDbContext
 
-<h3>Korepetytorzy</h3>
+<h3 style="display: inline-block">Korepetytorzy</h3>
 
-<select class="form-select" @bind="SubjectFilter">
+<select style="display: inline-block; width: 400px !important" class="form-select" @bind="SubjectFilter">
     <option selected value="-1">Wszystkie</option>
     @foreach (var subject in Subjects)
     {
@@ -12,6 +12,7 @@
     }
 </select>
 
+<br/>
 <br/>
 
 @if (TutorsList.Count == 0)
